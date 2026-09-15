@@ -13,16 +13,7 @@ textarea{
   font-family: "DM Sans", sans-serif;
 }
 
-.font-heading,
-.logo-heading{
-  font-family: "Saira", sans-serif;
-  
-}
 
-.font-subheading,
-.heading-title{
-  font-family: "Saira", sans-serif;
-}
 
 #root {
   min-height: 100vh;
