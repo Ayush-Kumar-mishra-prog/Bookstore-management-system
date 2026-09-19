@@ -21,11 +21,14 @@ function authResponse(user) {
   };
 }
 
-export async function register(req, res, next) {
+
+
+
+export const register = async(req,res)=>{
   try {
     const { name, email, password } = req.body;
-
-    if (!name || !email || !password) {
+    
+   if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email, and password are required" });
     }
 
@@ -36,12 +39,13 @@ export async function register(req, res, next) {
 
     const user = await User.create({ name, email, password, role: "customer" });
     res.status(201).json(authResponse(user));
+
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: "Error registering user", error: error.message });
   }
 }
 
-export async function login(req, res, next) {
+export async function login(req, res) {
   try {
     const { email, identity, password, role } = req.body;
     const loginEmail = email || identity;
@@ -61,6 +65,6 @@ export async function login(req, res, next) {
 
     res.json(authResponse(user));
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: "Error logging in user", error: error.message });
   }
 }
